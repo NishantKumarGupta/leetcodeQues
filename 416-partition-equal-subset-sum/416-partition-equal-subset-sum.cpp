@@ -2,10 +2,10 @@ class Solution {    //Approach 2: iterative
 public:
     bool dp[10001][201];
     bool canPartition(vector<int>& nums) {
-        int sum=0;
+        int sum = 0;
         for(auto x:nums)    sum+=x;
-        if(sum%2!=0)    return false;
-        sum/=2;
+        if(sum&1)    return false;
+        sum=sum>>1;
         for(int i=0;i<=sum;i++){
             for(int j=0;j<=nums.size();j++)
                 dp[i][j]=0;
