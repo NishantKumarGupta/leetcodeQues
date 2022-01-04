@@ -1,28 +1,32 @@
-class Solution { //Approach 1: memoization and recursive calls
+class Solution {    //Approach 2: iterative
 public:
-    int dp[20001][201];
-    bool rec(vector<int> &nums,int sum,int n){
-        //base cases
-        if(!sum) return true;
-        if(!n)  return false;
-        //dp check
-        if(dp[sum][n]!=-1)  return dp[sum][n];
-        //rec cases
-        if(nums[n-1]<=sum){
-            return dp[sum][n]=(rec(nums,sum-nums[n-1],n-1)) || (rec(nums,sum,n-1));
-        }
-        else
-            return dp[sum][n]=(rec(nums,sum,n-1));
-    }
-    
+    bool dp[20001][201];
     bool canPartition(vector<int>& nums) {
-        memset(dp,-1,sizeof(dp));
-        //first of all we have have to find out if the sum of the array is even
-        //or not because odd sum array can never return two equal sum subsets
         int sum=0;
         for(auto x:nums)    sum+=x;
         if(sum%2!=0)    return false;
-        return rec(nums,sum/2,nums.size());
+        sum/=2;
+        for(int i=0;i<=sum;i++){
+            for(int j=0;j<=nums.size();j++)
+                dp[i][j]=0;
+        }
+        for(int i=0;i<=nums.size();i++) dp[0][i]=true;
+        for(int i=1;i<=sum;i++){
+            for(int j=1;j<=nums.size();j++){
+                if(nums[j-1]<=i){
+                    dp[i][j]=(dp[i-nums[j-1]][j-1]) || (dp[i][j-1]);
+                }
+                else
+                    dp[i][j]=dp[i][j-1];
+            }
+        }
+        // for(int i=0;i<=sum;i++){
+        //     for(int j=0;j<=nums.size();j++){
+        //         cout<<dp[i][j]<<" ";
+        //     }
+        //     cout<<endl;
+        // }
+        // cout<<endl<<endl;
+        return dp[sum][nums.size()];
     }
-    
 };
