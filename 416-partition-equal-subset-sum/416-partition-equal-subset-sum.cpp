@@ -1,6 +1,6 @@
 class Solution {    //Approach 2: iterative
 public:
-    bool dp[20001][201];
+    bool dp[10001][201];
     bool canPartition(vector<int>& nums) {
         int sum=0;
         for(auto x:nums)    sum+=x;
