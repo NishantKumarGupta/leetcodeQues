@@ -28,3 +28,4 @@ public:
         return ans;
     }
 };
+//approach used: (next greatest element)
