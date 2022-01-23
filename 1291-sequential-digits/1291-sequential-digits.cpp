@@ -4,14 +4,13 @@ public:
         string s="123456789";
         vector<int> ans;
         int l=to_string(low).length(),r=to_string(high).length();
-        int k=l,n=s.length();
-        while(k<=r){
-            for(int i=0;i+k<=n;i++){
-                string temp(s,i,k);
+        while(l<=r){
+            for(int i=0;i+l<=9;i++){
+                string temp(s,i,l);
                 if(stoi(temp)>=low and stoi(temp)<=high)
                     ans.push_back(stoi(temp));
             }
-            k++;
+            l++;
         }
         return ans;
     }
