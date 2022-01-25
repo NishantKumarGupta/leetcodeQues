@@ -1,7 +1,9 @@
 class Solution {
-public:
+public: //optimization
     bool isPerfectSquare(int num) {
-        long long start=1,end=(long long)num;
+        if(num==1)
+            return true;
+        long long start=1,end=(long long)num/2;
         while(start<=end){
             long long mid=start+(end-start)/2;
             if(mid*mid==num)
