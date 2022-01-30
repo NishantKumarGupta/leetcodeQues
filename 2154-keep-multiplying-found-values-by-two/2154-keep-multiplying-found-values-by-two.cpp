@@ -1,19 +1,11 @@
 class Solution {
 public:
     int findFinalValue(vector<int>& nums, int original) {
-        sort(nums.begin(),nums.end());
+        set<int> st;
+        for(auto x:nums)
+            st.insert(x);
         while(1){
-            int start=0,end=nums.size()-1;
-            while(start<=end){
-                int mid=start+(end-start)/2;
-                if(nums[mid]==original)
-                    break;
-                else if(nums[mid]<original)
-                    start=mid+1;
-                else
-                    end=mid-1;
-            }
-            if(start>end)
+            if(st.find(original)==st.end())
                 break;
             else
                 original*=2;
