@@ -4,12 +4,9 @@ public:
         set<int> st;
         for(auto x:nums)
             st.insert(x);
-        while(1){
-            if(st.find(original)==st.end())
-                break;
-            else
+        while(st.find(original)!=st.end())
                 original*=2;
-        }
+        
         return original;
     }
 };
