@@ -7,7 +7,7 @@ public:
             left.push_back(temp);
             if(!nums[i])
                 temp++;
-            if(nums[i])
+            else
                 ttemp++;
         }
         left.push_back(temp);
