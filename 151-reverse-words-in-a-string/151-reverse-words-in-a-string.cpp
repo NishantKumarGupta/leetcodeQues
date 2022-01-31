@@ -1,9 +1,8 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        string ans="";
+        string ans="",word;
         stringstream st(s);
-        string word;
         while(st>>word){
             if(!ans.empty())
                 word+=' ';
