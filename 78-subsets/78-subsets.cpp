@@ -5,7 +5,6 @@ public:
     void rec(vector<int> &nums,int itr,vector<int> curr){
         if(itr>=nums.size()){
             ans.push_back(curr);
-            curr.clear();
             return;
         }
         rec(nums,itr+1,curr);
