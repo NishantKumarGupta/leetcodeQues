@@ -18,12 +18,13 @@ public:
             rec(candidates,target-candidates[itr],curr,itr+1);
         }
         else{
-            rec(candidates,target,curr,itr+1);
+            return;
         }
     }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         ansSet.clear();
         vector<int> curr;
+        sort(candidates.begin(),candidates.end());
         rec(candidates,target,curr,0);
         vector<vector<int>> ans;
         for(auto x:ansSet)
