@@ -4,11 +4,11 @@ public:// solution 1: memoization solution
     int rec(vector<int> &nums,int itr){
         if(itr>=nums.size()-1)
             return 0;
-        if(nums[itr]==0)
-            return 100000;
+        // if(nums[itr]==0)
+        //     return 100000;
         if(dp[itr]!=-1)
             return dp[itr];
-        int ans=INT_MAX;
+        int ans=100000;
         for(int i=1;i<=nums[itr];i++){
             ans=min(ans,1+rec(nums,itr+i));
         }
