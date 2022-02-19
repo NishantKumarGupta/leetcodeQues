@@ -1,13 +1,9 @@
 class Solution {
-public:
+public:// dp sol 1
     int fib(int n) {
-        vector<int> vec;
-        vec.push_back(0);
-        vec.push_back(1);
-        int itr=2;
-        for(;itr<=n;itr++){
-            vec.push_back(vec[itr-1]+vec[itr-2]);
-        }
-        return vec[n];
+        //base case
+        if(n==1 || n==0)
+            return n;
+        return fib(n-1)+fib(n-2);
     }
 };
