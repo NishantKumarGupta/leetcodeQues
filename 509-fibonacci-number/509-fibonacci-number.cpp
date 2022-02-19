@@ -9,6 +9,6 @@ public:// dp sol 1 memoization method
         if(dp[n]>0)
             return dp[n];
         //rec cases
-        return fib(n-1)+fib(n-2);
+        return dp[n]=fib(n-1)+fib(n-2);
     }
 };
