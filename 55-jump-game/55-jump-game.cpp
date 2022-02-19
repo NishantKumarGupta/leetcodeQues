@@ -1,18 +1,16 @@
 class Solution {
-public:// solution 1: memoization apporach
-    int dp[10005];
-    bool rec(vector<int>&nums,int itr){
-        if(itr>=nums.size()-1)
-            return dp[itr]=true;
-        if(dp[itr]!=-1)
-            return dp[itr];
-        for(int i=1;i<=nums[itr];i++)
-            if(rec(nums,itr+i))
-                return dp[itr]=true;
-        return dp[itr]=false;
-    }
+public:// solution 2: iterative apporach
     bool canJump(vector<int>& nums) {
-        memset(dp,-1,sizeof(dp));
-        return rec(nums,0);
+        vector<bool> dp(nums.size(),false);
+        dp[nums.size()-1]=true;
+        for(int i=nums.size()-2;i>=0;i--){
+            for(int j=1;j<=nums[i] && j+i<nums.size();j++){
+                if(dp[j+i]){
+                    dp[i]=true;
+                    break;
+                }
+            }
+        }
+        return dp[0];
     }
 };
