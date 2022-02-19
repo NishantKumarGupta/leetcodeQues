@@ -1,14 +1,16 @@
 class Solution {
-public:// dp sol 1 memoization method
+public:// dp sol 2 bottom up(tabulation) method
     int dp[35]={0};
     int fib(int n) {
-        //base case
-        if(n==1 || n==0)
-            return n;
-        //dp case
         if(dp[n]>0)
             return dp[n];
-        //rec cases
-        return dp[n]=fib(n-1)+fib(n-2);
+        for(int i=0;i<=n;i++){
+            if(i==1 || i==0){
+                dp[i]=i;
+                continue;
+            }
+            dp[i]=dp[i-1]+dp[i-2];
+        }
+        return dp[n];
     }
 };
