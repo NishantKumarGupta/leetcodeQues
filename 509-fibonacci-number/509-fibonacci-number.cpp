@@ -1,5 +1,5 @@
 class Solution {
-public:// dp sol 1
+public:// dp sol 1 memoization method
     int fib(int n) {
         //base case
         if(n==1 || n==0)
