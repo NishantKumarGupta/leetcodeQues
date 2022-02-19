@@ -1,5 +1,5 @@
 class Solution {
-public:
+public:// solution 1: memoization solution
     int dp[10005];
     int rec(vector<int> &nums,int itr){
         if(itr>=nums.size()-1)
