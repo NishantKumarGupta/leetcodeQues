@@ -4,8 +4,6 @@ public:// solution 1: memoization solution
     int rec(vector<int> &nums,int itr){
         if(itr>=nums.size()-1)
             return 0;
-        // if(nums[itr]==0)
-        //     return 100000;
         if(dp[itr]!=-1)
             return dp[itr];
         int ans=100000;
