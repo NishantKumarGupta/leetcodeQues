@@ -12,6 +12,7 @@ public: // solution 1: memoization(top down) approach
         return dp[itr]=cost[itr]+min(rec(cost,itr+1),rec(cost,itr+2));
     }
     int minCostClimbingStairs(vector<int>& cost) {
+        memset(dp,0,sizeof(dp));
         return min(rec(cost,0),rec(cost,1));
     }
 };
