@@ -1,6 +1,6 @@
 class Solution {
 public://solution 1: memoization(top down) approach
-    int dp[105]={-1};
+    int dp[105];
     int rec(vector<int>&nums,int itr){
         //base case
         if(itr>=nums.size())
