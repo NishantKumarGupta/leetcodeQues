@@ -1,18 +1,13 @@
 class Solution {
-public: // solution 1: memoization(top down) approach
-    int dp[1005]={0};
-    int rec(vector<int> &cost,int itr){
-        //base case
-        if(itr>=cost.size())
-            return 0;
-        //dp case
-        if(dp[itr]>0)
-            return dp[itr];
-        //rec cases
-        return dp[itr]=cost[itr]+min(rec(cost,itr+1),rec(cost,itr+2));
-    }
+public: // solution 1: bottom up(iterative/tabulation) approach
     int minCostClimbingStairs(vector<int>& cost) {
-        memset(dp,0,sizeof(dp));
-        return min(rec(cost,0),rec(cost,1));
+        int dp[1005]={0};
+        int n=cost.size();
+        dp[0]=cost[0];
+        dp[1]=cost[1];
+        for(int i=2;i<n;i++){
+            dp[i]=cost[i]+(min(dp[i-1],dp[i-2]));
+        }
+        return min(dp[n-1],dp[n-2]);
     }
 };
