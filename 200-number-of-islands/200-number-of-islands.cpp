@@ -1,6 +1,6 @@
 class Solution {
 public: //isko karenge hum BFS se ,nai hua isse DFS se karke dekhte
-    
+        //gaandu ques hai DFS me chalra BFS me TLE dera
     void rec(vector<vector<char>> &grid,int i,int j){
         if(i<0 || i>=grid.size() || j<0 || j>=grid[0].size() || grid[i][j] =='0')
             return;
