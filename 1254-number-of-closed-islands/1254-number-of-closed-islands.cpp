@@ -1,6 +1,10 @@
 class Solution {
 public://ao chalo kare ise DFS se, then karenge BFS se
-    bool DFS(vector<vector<int>> &grid,int i,int j){
+       //DFS done ezzz but isme & ka chakkar hai
+       //isme BFS karna is not sensible so wont be doing it par
+       //flag ka use karke ho jaega
+    
+   bool DFS(vector<vector<int>> &grid,int i,int j){
         if(i<0 || i>=grid.size() || j<0 || j>=grid[0].size())
             return false;
         
@@ -8,7 +12,6 @@ public://ao chalo kare ise DFS se, then karenge BFS se
             return true;
         
         grid[i][j]=1;
-        
         return (DFS(grid,i+1,j) & DFS(grid,i-1,j) & DFS(grid,i,j+1) & DFS(grid,i,j-1));
     }
     
