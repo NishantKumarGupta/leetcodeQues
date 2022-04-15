@@ -2,6 +2,7 @@ class Solution {
 public: //lets do this with DFS first as its most trustworthy
         //DFS done bc bahut ez
         //trying BFS
+        //BFS bhi done tera bhai OP hai yaar
     
     bool isValid(vector<vector<int>> &grid1,int i,int j){
         if(i<0 || i>=grid1.size() || j<0 || j>=grid1[0].size())
