@@ -1,6 +1,6 @@
 class Solution {
 public: //lets do this with DFS first as its most trustworthy
-    
+        //DFS done bc bahut ez
     bool DFS(vector<vector<int>> &grid1,vector<vector<int>> &grid2,int i,int j){
         if(i<0 || i>=grid1.size() || j<0 || j>=grid1[0].size())
             return true;
