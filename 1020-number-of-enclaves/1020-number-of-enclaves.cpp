@@ -2,6 +2,7 @@ class Solution {
 public:
     //DFS done ez
     //trying BFS
+    //BFS done super ez boi
     bool isValid(vector<vector<int>> &grid,int i,int j){
         if(i<0 || i>=grid.size() || j<0 || j>=grid[0].size())
             return false;
