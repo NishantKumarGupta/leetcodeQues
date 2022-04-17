@@ -4,7 +4,7 @@ public:
         int start=0,end=nums.size()-1;
         while(start<end){
             int mid=start+(end-start)/2;
-            if(nums[mid]>=nums[mid+1]){
+            if(nums[mid]>nums[mid+1]){
                 end=mid;
             }
             else{
