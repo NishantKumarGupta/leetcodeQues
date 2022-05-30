@@ -1,16 +1,17 @@
 class Solution {
-public: // solution 1: recursive approach
+public:
     vector<vector<int>> generate(int numRows) {
-        if(numRows==1)
+        if(numRows == 1)
             return {{1}};
-        vector<vector<int>> ans=generate(numRows-1);
-        vector<int> vec;
-        vec.push_back(1);
-        for(int i=1;i<ans[ans.size()-1].size();i++){
-            vec.push_back(ans[ans.size()-1][i-1]+ans[ans.size()-1][i]);
+        vector<vector<int>> ans = generate(numRows - 1);
+        vector<int> tempVec;
+        tempVec.push_back(1);
+        int lastRow = numRows - 2;
+        for(int i=1; i<ans[lastRow].size();i++){
+            tempVec.push_back(ans[lastRow][i]+ans[lastRow][i-1]);
         }
-        vec.push_back(1);
-        ans.push_back(vec);
+        tempVec.push_back(1);
+        ans.push_back(tempVec);
         return ans;
     }
 };
