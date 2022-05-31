@@ -1,22 +1,18 @@
 class Solution {
 public: //one way pop into mind The first one being a binary search using count
-    
-    //using the binary search method
+    // but we will do this in single pass loop so we use tortoise method(floyd's method)
+    //using the floyd's method
     int findDuplicate(vector<int>& nums) {
-        int start = 0, end=nums.size()-1;
-        while(start<=end){
-            int mid = start+(end-start)/2;
-            int count=0;
-            for(auto &element: nums){
-                if(element<=mid)
-                    count++;
-            }
-            if(count<=mid){
-                start = mid+1;
-            }
-            else
-                end = mid-1;
+        int slow=nums[0],fast=nums[0];
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }while(slow!=fast);
+        fast = nums[0];
+        while(fast!=slow){
+            slow = nums[slow];
+            fast = nums[fast];
         }
-        return start;
+        return slow;
     }
 };
