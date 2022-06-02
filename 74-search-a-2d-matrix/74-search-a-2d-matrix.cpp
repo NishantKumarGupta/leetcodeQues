@@ -2,11 +2,19 @@ class Solution {
 public: //SFI
     /*
         Method 1: Brute force approach
-        We simply traverse the whole matrix from top to bottom either row by row or column
-        by column and compare each of the values in the matrix to our target value
+        We simply traverse the whole matrix from top to bottom either row by row or
+        column by column and compare each of the values in the matrix to our target value
         Tc - O(n*m) SC- O(1)
         
-        Method 2: Binary Search approach
+        Method 2: Staircase Search approach
+        Start from the top right most element of the matrix and compare the value of
+        the current position with the target value and three situations are possible
+        1. equal to target variable => return true;
+        2. smaller than the target variable => row++;
+        3. larger than the target variable => col--;
+        Tc - O(m+n) SC - O(1)
+        
+        Method 3: Binary Search approach
         We will binary search for the target value and search the element that is just
         smaller than the target element and after finding that we will binary search 
         for the target variable in that row.
