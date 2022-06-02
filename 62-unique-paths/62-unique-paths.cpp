@@ -1,10 +1,18 @@
 class Solution {
 public: //SFI
     /*
-        Method 1: DP
+        Method 1: DP recursive (Brute Force approach)
         We simply move to either right or down and consider this as our starting position
         and try to reach the goal position and return it to solve the bigger problem
         and apply DP.
+        TC - O(n*m) SC - O(n*m)
+        
+        Method 2: Using combinatrics
+        When we observe the paths we find out 2 key observations
+        1. All unique paths have same length
+        2. All paths have same number of right and down steps
+        So basically we just calculate the number of rights or downs using combinatrics
+        TC - O(m) or O(n) SC - O(1)
     */
     
     //DP approach
