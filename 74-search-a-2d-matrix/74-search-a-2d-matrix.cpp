@@ -21,7 +21,7 @@ public: //SFI
         Tc- O(logm*logn) SC - O(1)
     */
     
-    //Method 2 implementation
+    //Method 3 implementation
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         int start=0,end = (int)matrix.size()-1,rowNum=-1;
         while(start<=end){
