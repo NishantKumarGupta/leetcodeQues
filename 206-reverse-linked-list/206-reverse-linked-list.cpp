@@ -11,10 +11,10 @@ public: //SFI
     ListNode* reverseList(ListNode* head) {
         ListNode* currNode = head, *prevNode = NULL;
         while(currNode){
-            ListNode *tempNode = currNode -> next;
+            ListNode *nextNode = currNode -> next;
             currNode -> next = prevNode;
             prevNode = currNode;
-            currNode = tempNode;
+            currNode = nextNode;
         }
         return prevNode;
     }
