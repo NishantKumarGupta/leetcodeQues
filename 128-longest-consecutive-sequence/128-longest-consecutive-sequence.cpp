@@ -20,19 +20,21 @@ public: //SFI
     
     //optimal Hashset approach
     int longestConsecutive(vector<int>& nums) {
-        int ans = 0;
+        int longestStreak = 0;
         unordered_set<int> hashSet;
         for(auto &element:nums)
             hashSet.insert(element);
         
         for(auto &element:nums){
-            if(hashSet.find(element-1) == hashSet.end()){
-                int mover = element;
-                while(hashSet.find(mover) != hashSet.end())
-                    mover++;
-                ans = max(ans, (mover-element));
+            if(!hashSet.count(element-1)){
+                int currentStreak = 1;
+                while(hashSet.count(element+1)){
+                    element++;
+                    currentStreak++;
+                }
+                longestStreak = max(currentStreak, longestStreak);
             }
         }
-        return ans;
+        return longestStreak;
     }
 };
