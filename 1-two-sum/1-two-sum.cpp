@@ -12,7 +12,7 @@ public: //SFI
         1. if sum == target return indices
         2. if sum < target increment the low pointer
         3. if sum > target decrement the high pointer
-        Tc - O(nlogn) SC - O(n)
+        Tc - O(nlogn) SC - O(1)
         
         Method 3: Hash Map approach
         Use a hash map. At every element we check the hash map for the value 
