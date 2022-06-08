@@ -16,7 +16,7 @@ public:
     
     //finding the last kth element approach
     ListNode* rotateRight(ListNode* head, int k) {
-        if(!head or !head -> next)
+        if(!head)
             return head;
         
         int length = 0;
