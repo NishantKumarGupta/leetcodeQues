@@ -5,24 +5,44 @@ public:
         In this we simply store all the values in a vector and using a two pointer
         approach check for palindrome
         TC- O(n) SC - O(n)
+        
+        Method 2: Midpoint approach
+        So basically what we do is we find the mid point of the linked list and 
+        reverse the linked list after the middle node and then use two pointer
+        in the linked list to check for palindrome
+        TC - O(n) SC - O(1)
     */
     
     //greedy vector approach
     bool isPalindrome(ListNode* head) {
-        vector<int> values;
-        ListNode *mover = head;
+        ListNode *slow = head, *fast = head;
+        if(!head || !head -> next)
+            return true;
         
-        while(mover){
-            values.push_back(mover -> val);
-            mover = mover -> next;
+        //finding the middle node of the linked list
+        while(fast and fast -> next and fast -> next -> next){
+            fast = fast -> next -> next;
+            slow = slow -> next;
         }
         
-        int start = 0, end = values.size()-1;
-        while(start < end){
-            if(values[start] != values[end])
+        //now reversing the right half of the linked list
+        ListNode *mover = slow -> next, *prev = NULL;
+        while(mover){
+            ListNode *nextNode = mover -> next;
+            mover -> next = prev;
+            prev = mover;
+            mover = nextNode;
+        }
+        slow -> next = prev;
+        
+        //checking for palidrome
+        ListNode *dummy = head;
+        slow = slow -> next;
+        while(slow){
+            if(slow -> val != dummy -> val)
                 return false;
-            start ++;
-            end --;
+            dummy = dummy -> next;
+            slow = slow -> next;
         }
         return true;
     }
