@@ -1,15 +1,20 @@
 class Solution {
-public://solution 1: bottom up(iterative/tabulation) approach
-    int rob(vector<int>& nums) {
-        int dp[105];
-        int n=nums.size();
-        if(n==1)
+public:
+    int recursion(vector<int> &nums, int n, vector<int> &dp){
+        if(n == 0)
             return nums[0];
-        dp[0]=nums[0];
-        dp[1]=max(nums[1],nums[0]);
-        for(int i=2;i<n;i++){
-            dp[i]=max(dp[i-1],nums[i]+dp[i-2]);
-        }
-        return max(dp[n-1],dp[n-2]);
+        if(n == 1)
+            return max(nums[0], nums[1]);
+        
+        if(dp[n] > -1)
+            return dp[n];
+        
+        return dp[n] = max(recursion(nums, n - 1, dp), nums[n] + recursion(nums, n - 2, dp));   
+    }
+    
+    int rob(vector<int>& nums) {
+        int numsLen = nums.size();
+        vector<int> dp(numsLen + 1, -1);
+        return recursion(nums, numsLen - 1, dp);
     }
 };
