@@ -8,7 +8,7 @@ public:
         int ans = 0;
         for(auto x:mp){
             if(st.find(x.second) != st.end()){
-                while(st.find(x.second) != st.end() & x.second > 0){
+                while(st.find(x.second) != st.end() && x.second > 0){
                     x.second --;
                     ans++;
                 }
