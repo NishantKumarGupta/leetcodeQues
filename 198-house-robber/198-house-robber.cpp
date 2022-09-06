@@ -1,19 +1,21 @@
 class Solution {
 public:
-    int rob(vector<int>& nums) {
-        int numsLen = nums.size();
-        if(numsLen == 1)
-            return nums[0];
+    
+    int robHouse(vector<int> &nums, int n, vector<int> &dp){
+        if(n < 0) return 0;
+        if(n == 0)  return nums[n];
         
-        vector<int> dp(numsLen + 1, -1);
-        int secondLast = nums[0];
-        int last = max(nums[1], nums[0]);
-        int curr = last;
-        for(int i = 2; i < numsLen; i++){
-            curr = max(last, nums[i] + secondLast);
-            secondLast = last;
-            last = curr;
-        }
-        return curr;
+        if(dp[n] != -1) return dp[n];
+        
+        int pickHouse = nums[n] + robHouse(nums, n - 2, dp);
+        int notPickHouse = robHouse(nums, n - 1, dp);
+        
+        return dp[n] = max(pickHouse, notPickHouse);
+    }
+    
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> dp(n, -1);
+        return robHouse(nums, n - 1, dp);    
     }
 };
