@@ -5,9 +5,9 @@ public: //SFI
         We simply move to either right or down and consider this as our starting position
         and try to reach the goal position and return it to solve the bigger problem
         and apply DP.
-        TC - O(n*m) SC - O(n*m) + O(n * m)
+        TC - O(n*m) SC - O(n*m) (for dp vector) + O((n - 1) + (m - 1)) (path length)
         
-        Method 2: DP iterative TC - O(n * m) SC - O(n*m)
+        Method 2: DP iterative TC - O(n * m) SC - O(n * m)
         
         Method 3: Using combinatrics
         When we observe the paths we find out 2 key observations
@@ -32,24 +32,44 @@ public: //SFI
 //         return dp[m][n] = goLeft + goUp;
 //     }
     
+    //method 2
+//     vector<vector<int>> dp(m, vector<int>(n, -1));
+//         dp[0][0] = 1;
+        
+//         for(int i = 0; i < m; i++){
+//             for(int j = 0; j < n; j++){
+//                 if(i == 0 && j == 0) continue;
+//                     int goRight = 0, goDown = 0;
+//                     if(i > 0){
+//                         goDown = dp[i - 1][j];
+//                     }
+//                     if(j > 0){
+//                         goRight = dp[i][j - 1];
+//                     }
+//                     dp[i][j] = goDown + goRight;
+                
+//             }
+//         }
+//         return dp[m - 1][n - 1];
+    
     int uniquePaths(int m, int n) {
-        vector<vector<int>> dp(m, vector<int>(n, -1));
-        dp[0][0] = 1;
+        vector<int> prevRow(n, 0);
         
         for(int i = 0; i < m; i++){
+            vector<int> temp(n, 0);
             for(int j = 0; j < n; j++){
-                if(i == 0 && j == 0) continue;
-                    int goRight = 0, goDown = 0;
-                    if(i > 0){
-                        goDown = dp[i - 1][j];
-                    }
-                    if(j > 0){
-                        goRight = dp[i][j - 1];
-                    }
-                    dp[i][j] = goDown + goRight;
-                
+                if(i == 0 && j == 0) {
+                    temp[j] = 1;
+                }
+                else{
+                    int goDown = 0, goRight = 0;
+                    if(i > 0) goDown = prevRow[j];
+                    if(j > 0) goRight = temp[j - 1];
+                    temp[j] = goDown + goRight;
+                }
             }
+            prevRow = temp;
         }
-        return dp[m - 1][n - 1];
+        return prevRow[n - 1];
     }
 };
