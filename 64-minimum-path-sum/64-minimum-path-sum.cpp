@@ -1,22 +1,28 @@
 //SFIP
 class Solution {
 public:
-    int minPathSum(vector<vector<int>>& grid) {
-        int row = grid.size(), col = grid[0].size();
-        vector<vector<int>> dp(row, vector<int>(col, 0));
-        dp[0][0] = grid[0][0];
-        for(int i = 0; i < row; i++){
-            for(int j = 0; j < col; j++){
-                if(i == 0 and j == 0)
-                    continue;
-                if(i == 0)
-                    dp[i][j] = grid[i][j] + dp[i][j - 1];
-                else if(j == 0)
-                    dp[i][j] = grid[i][j] + dp[i - 1][j];
-                else
-                    dp[i][j] = grid[i][j] + min(dp[i - 1][j], dp[i][j - 1]);
-            }
+    int minPath(vector<vector<int>> &grid, int m, int n, vector<vector<int>> &dp){
+        if(m == 0 and n == 0)
+            return grid[m][n];
+        
+        if(dp[m][n] != -1) return dp[m][n];
+        
+        int goLeft = INT_MAX, goUp = INT_MAX;
+        
+        if(m > 0){
+            goUp = minPath(grid, m - 1, n, dp);
         }
-        return dp[row - 1][col - 1];
+        if(n > 0){
+            goLeft = minPath(grid, m, n - 1, dp);
+        }
+        
+        return dp[m][n] = grid[m][n] + min(goUp, goLeft);
+    }
+    
+    int minPathSum(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        vector<vector<int>> dp(m, vector<int>(n, -1));
+        return minPath(grid, m - 1, n - 1, dp);
     }
 };
