@@ -1,18 +1,40 @@
-class Solution {
+class Solution { //SFIP
 public:
+//     int minPath(vector<vector<int>> &triangle, int row, int col, vector<vector<int>> &dp){
+//         if(row == triangle.size() - 1)
+//             return triangle[row][col];
+        
+//         if(dp[row][col] != INT_MIN) return dp[row][col];
+        
+//         int goDownRight = minPath(triangle, row + 1, col + 1, dp);
+//         int goDown = minPath(triangle, row + 1, col, dp);
+        
+//         return dp[row][col] = triangle[row][col] + min(goDown, goDownRight);
+//     }
+    
     int minimumTotal(vector<vector<int>>& triangle) {
-        int dp[205][205] = {0};
-        int s = triangle.size();
-        dp[0][0] = triangle[0][0];
-        for(int i=1;i<s;i++) {
-            for(int j=0,len=triangle[i].size(); j<len; j++) {
-                dp[i][j] = min(dp[i - 1][max(0, j - 1)], dp[i - 1][min(j, len - 2)]) + triangle[i][j];
+        int m = triangle.size();
+        int n = triangle[m - 1].size();
+        vector<vector<int>> dp(m, vector<int>(n, INT_MAX));
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < triangle[i].size(); j++){
+                if(i == 0 and j == 0){
+                    dp[i][j] = triangle[i][j];
+                }
+                else{
+                    int goUp = dp[i - 1][j];
+                    int goUpLeft = INT_MAX;
+                    if(j != 0){
+                        goUpLeft = dp[i - 1][j - 1];
+                    }
+                    dp[i][j] = triangle[i][j] + min(goUp, goUpLeft);
+                }
             }
         }
-
         int ans = INT_MAX;
-        for(int i = 0, k = triangle[s - 1].size(); i < k; ++i)
-            ans = min(ans, dp[s - 1][i]);
+        for(int i = 0; i < triangle[m - 1].size(); i++){
+            ans = min(dp[m - 1][i], ans);
+        }
         return ans;
     }
 };
