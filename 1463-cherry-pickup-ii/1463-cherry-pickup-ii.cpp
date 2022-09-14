@@ -1,30 +1,37 @@
-class Solution {
+class Solution { //SFIP
 public:
-    int dp[70][70][70] = {};
-    int newColOne[3]={-1,0,1};
-    int newColTwo[3]={-1,0,1};
-    int cherryPickup(vector<vector<int>>& grid) {
-        memset(dp, -1, sizeof(dp));
-        int m = grid.size(), n = grid[0].size();
-        return rec(grid, m, n, 0, 0, n - 1);
-    }
-    int rec(vector<vector<int>>& grid, int m, int n, int r, int c1, int c2) {
-        if (r == m) return 0;
-        if (dp[r][c1][c2] != -1) return dp[r][c1][c2];
-        int cherries = 0;
-        if(c1==c2) cherries = grid[r][c1];
-        else cherries = grid[r][c1]+grid[r][c2];
-
-        int next = 0;
-        for (int i = 0; i <=2; i++) {
-            for (int j = 0; j <= 2; j++) { 
-                int nc1 = c1 + newColOne[i], nc2 = c2 + newColTwo[j];
-                if (nc1 >= 0 && nc1 < n && nc2 >= 0 && nc2 < n) {
-                    next = max(next, rec(grid, m, n, r + 1, nc1, nc2));
+    int pickup(int i, int j1, int j2, vector<vector<vector<int>>> &dp, vector<vector<int>> &grid){
+        if(j1 < 0 || j1 >= grid[0].size() || j2 < 0 || j2 >= grid[0].size()){
+            return -1e8;
+        }
+        if(i  == grid.size() - 1){
+            if(j1 == j2){
+                return grid[i][j1];
+            }
+            else{
+                return grid[i][j1] + grid[i][j2];
+            }
+        }
+        if(dp[i][j1][j2] != -1) return dp[i][j1][j2];
+        
+        int maxCherry = 0;
+        for(int dj1 = -1; dj1 < 2; dj1++){
+            for(int dj2 = -1; dj2 < 2; dj2++){
+                if(j1 == j2){
+                    maxCherry = max(maxCherry, grid[i][j1] + pickup(i + 1, j1 + dj1, j2 + dj2, dp, grid));
+                }
+                else{
+                    maxCherry = max(maxCherry, grid[i][j1] + grid[i][j2] + pickup(i + 1, j1 + dj1, j2 + dj2, dp, grid));
                 }
             }
         }
-
-        return dp[r][c1][c2] = next + cherries;
+        return dp[i][j1][j2] = maxCherry;
+    }
+    
+    int cherryPickup(vector<vector<int>>& grid) {
+        int row = grid.size();
+        int col = grid[0].size();
+        vector<vector<vector<int>>> dp(row, vector<vector<int>>(col, vector<int>(col, -1)));
+        return pickup(0, 0, col - 1, dp, grid);
     }
 };
