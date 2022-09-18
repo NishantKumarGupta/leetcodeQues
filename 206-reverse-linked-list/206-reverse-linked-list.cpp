@@ -1,21 +1,28 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
-public: //SFI
-    /*
-        Method 1: Greedy method (Iterative)
-        We will simply traverse the linked list and update the next pointers of the
-        nodes to the previous nodes
-        TC - O(n) SC - O(1)
-    */
-    
-    //greedy method (Iterative)
+public:
+    //Iterative
     ListNode* reverseList(ListNode* head) {
-        ListNode* currNode = head, *prevNode = NULL;
-        while(currNode){
-            ListNode *nextNode = currNode -> next;
-            currNode -> next = prevNode;
-            prevNode = currNode;
-            currNode = nextNode;
+        ListNode *prevNode = NULL;
+        while(head != NULL){
+            ListNode *nextNode = head -> next;
+            head -> next = prevNode;
+            prevNode = head;
+            head = nextNode;
         }
         return prevNode;
     }
+    
+//     ListNode* reverseList(ListNode* head) {
+        
+//     }
 };
